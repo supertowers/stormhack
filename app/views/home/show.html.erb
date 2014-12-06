@@ -54,55 +54,55 @@
 <% end %>
 
 <% content_for :navigation_secondary do %>
-
-
-  <li class="dropdown">
-    <a href="/activity" class="dropdown-toggle" data-toggle="dropdown">
-      <span class="label label-success row-stat-badge">+120</span>
-    </a>
-
-    <ul class="dropdown-menu noticebar-menu noticebar-hoverable" role="menu">
-      <li class="nav-header">
-      <div class="pull-left">
-        Recompensas
-      </div>
-
-      <div class="pull-right">
-        <a href="javascript:;">Marcar como vistas</a>
-      </div>
-      </li>
-
-      <li>
-      <a href="/activity" class="noticebar-item">
-        <span class="noticebar-item-image">
-          <i class="fa fa-ban text-danger"></i>
-        </span>
-        <span class="noticebar-item-body">
-          <strong class="noticebar-item-title">Bug rechazado <span class="label label-danger">-30</span></strong>
-          <span class="noticebar-item-text">Pablo Lopez ha rechazado tu SQL Injection</span>
-          <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> hace 12 minutos</span>
-        </span>
+  <% if current_user %>
+    <li class="dropdown">
+      <a href="/activity" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="label label-success row-stat-badge">+120</span>
       </a>
-      </li>
 
-      <li>
-      <a href="/activity" class="noticebar-item">
-        <span class="noticebar-item-image">
-          <i class="fa fa-check-circle text-success"></i>
-        </span>
-        <span class="noticebar-item-body">
-          <strong class="noticebar-item-title">Bug aceptado <span class="label label-success">+150</span></strong>
-          <span class="noticebar-item-text">Has aceptado un XSS de Selene Pinillos</span>
-          <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> hace 20 minutos</span>
-        </span>
-      </a>
-      </li>
+      <ul class="dropdown-menu noticebar-menu noticebar-hoverable" role="menu">
+        <li class="nav-header">
+        <div class="pull-left">
+          Recompensas
+        </div>
 
-      <li class="noticebar-menu-view-all">
-      <a href="/activity">Ver toda la actividad</a>
-      </li>
-    </ul>
-  </li>
+        <div class="pull-right">
+          <a href="javascript:;">Marcar como vistas</a>
+        </div>
+        </li>
+
+        <li>
+        <a href="/activity" class="noticebar-item">
+          <span class="noticebar-item-image">
+            <i class="fa fa-ban text-danger"></i>
+          </span>
+          <span class="noticebar-item-body">
+            <strong class="noticebar-item-title">Bug rechazado <span class="label label-danger">-30</span></strong>
+            <span class="noticebar-item-text">Pablo Lopez ha rechazado tu SQL Injection</span>
+            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> hace 12 minutos</span>
+          </span>
+        </a>
+        </li>
+
+        <li>
+        <a href="/activity" class="noticebar-item">
+          <span class="noticebar-item-image">
+            <i class="fa fa-check-circle text-success"></i>
+          </span>
+          <span class="noticebar-item-body">
+            <strong class="noticebar-item-title">Bug aceptado <span class="label label-success">+150</span></strong>
+            <span class="noticebar-item-text">Has aceptado un XSS de Selene Pinillos</span>
+            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> hace 20 minutos</span>
+          </span>
+        </a>
+        </li>
+
+        <li class="noticebar-menu-view-all">
+        <a href="/activity">Ver toda la actividad</a>
+        </li>
+      </ul>
+    </li>
+  <% end %>
 <% end %>
 
 <div class="content">
