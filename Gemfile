@@ -47,7 +47,9 @@ gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'guard-livereload', require: false
 end
 
 gem 'carrierwave'
 gem 'mini_magick'
+
