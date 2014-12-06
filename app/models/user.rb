@@ -22,5 +22,9 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def to_s
+    email
+  end
 end
 
