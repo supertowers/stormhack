@@ -1326,7 +1326,7 @@ p {
   top: -1px;
   width: 40px;
   margin-right: .65em;
-  border: 1px solid #777;
+  border: 1px solid rgba(128, 128, 128, .4);
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
   border-bottom-right-radius: 30px;
