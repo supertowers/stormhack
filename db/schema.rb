@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206194756) do
+ActiveRecord::Schema.define(version: 20141206215929) do
 
   create_table "participations", force: true do |t|
     t.string   "type"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20141206194756) do
     t.datetime "updated_at"
     t.text     "public_description"
     t.text     "private_description"
+    t.string   "screenshot"
   end
 
   add_index "sites", ["user_id"], name: "index_sites_on_user_id"
