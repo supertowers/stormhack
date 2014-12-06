@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :vulnerabilities
-  resources :participations
-  resources :sites
+  resources :sites do
+    resources :auditor_participations, only: [:create, :destroy]
+    resources :tester_participations, only: [:create, :destroy]
+  end
+
   resources :users
 
   root 'home#show'
