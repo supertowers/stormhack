@@ -33,10 +33,10 @@
       <li class="divider"></li>
 
       <li>
-      <a href="/logout">
+      <%= link_to destroy_user_session_path, :method =>:delete do %>
         <i class="fa fa-sign-out"></i>
         &nbsp;&nbsp;Salir
-      </a>
+      <% end -%>
       </li>
 
     </ul>
