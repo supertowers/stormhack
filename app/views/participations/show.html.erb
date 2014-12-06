@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @participation.type %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @participation.user %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @participation.site %>
+</p>
+
+<%= link_to 'Edit', edit_participation_path(@participation) %> |
+<%= link_to 'Back', participations_path %>

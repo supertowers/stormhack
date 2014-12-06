@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206135330) do
+ActiveRecord::Schema.define(version: 20141206172507) do
+
+  create_table "participations", force: true do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "participations", ["site_id"], name: "index_participations_on_site_id"
+  add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+
+  create_table "sites", force: true do |t|
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sites", ["user_id"], name: "index_sites_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "provider"
@@ -22,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141206135330) do
     t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
 end

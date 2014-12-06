@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :vulnerabilities
+
+  resources :participations
+
+  resources :sites
+
   root 'home#show'
 
   # facebook login

@@ -1,0 +1,2 @@
+class TesterParticipation < Participation
+end

@@ -1,0 +1,2 @@
+class AuditorParticipation < Participation
+end

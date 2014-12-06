@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @vulnerability.user %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @vulnerability.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @vulnerability.description %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @vulnerability.approved %>
+</p>
+
+<%= link_to 'Edit', edit_vulnerability_path(@vulnerability) %> |
+<%= link_to 'Back', vulnerabilities_path %>
