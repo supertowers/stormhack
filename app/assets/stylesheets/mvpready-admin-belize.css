@@ -2003,13 +2003,13 @@ table.table thead .sorting_desc_disabled,
 .navbar-profile-avatar {
   position: relative;
   top: -1px;
-  width: 30px;
+  width: 40px;
   margin-right: .65em;
-  border: 2px solid #fff;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border: 1px solid rgba(128, 128, 128, .4);
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 .navbar-profile-label {
   display: inline;
