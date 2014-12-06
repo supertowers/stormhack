@@ -48,3 +48,6 @@ gem 'omniauth-facebook'
 group :development, :test do
   gem 'sqlite3'
 end
+
+gem 'carrierwave'
+gem 'mini_magick'
