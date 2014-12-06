@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
+# Ignore uploads
+/public/uploads/*
+
 Podfile.lock
 /iphone/StormHack/Pods

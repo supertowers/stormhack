@@ -3,6 +3,8 @@ class Site < ActiveRecord::Base
   has_many :auditor_participations
   has_many :auditors, through: :auditor_participations, source: :user
   has_many :tester_participations
+  
+  mount_uploader :screenshot, ScreenshotUploader
 
   before_validation :smart_add_url_protocol
 
