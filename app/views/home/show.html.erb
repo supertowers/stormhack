@@ -1,2 +1,55 @@
+
+<% content_for :navigation do %>
+  <li class="active">
+    <a href="/">Home</a>
+  </li>
+
+  <% if (@user) %>
+    <li class="dropdown navbar-profile">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+      <img src="<%= @user.image %>" class="navbar-profile-avatar" alt="">
+      <span class="navbar-profile-label"><%= @user.name %> &nbsp;</span>
+      <i class="fa fa-caret-down"></i>
+    </a>
+
+    <ul class="dropdown-menu" role="menu">
+
+      <li>
+      <a href="/user/profile">
+        <i class="fa fa-user"></i>
+        &nbsp;&nbsp;Perfil
+      </a>
+      </li>
+
+      <li>
+      <a href="/user/settings">
+        <i class="fa fa-cogs"></i>
+        &nbsp;&nbsp;Ajustes
+      </a>
+      </li>
+
+      <li class="divider"></li>
+
+      <li>
+      <a href="/logout">
+        <i class="fa fa-sign-out"></i>
+        &nbsp;&nbsp;Salir
+      </a>
+      </li>
+
+    </ul>
+
+    </li>
+  <% else %>
+    <li>
+      <a href="/auth/facebook">
+        <i class="fa fa-facebook"></i>
+        Login
+      </a>
+    </li>
+
+  <% end %>
+<% end %>
+
 <h1>Home#show</h1>
 <p>Find me in app/views/home/show.html.erb</p>
