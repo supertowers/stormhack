@@ -1,20 +1,22 @@
 class SitesController < ApplicationController
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_site, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.all
+    @sites = Site.all.order("created_at DESC")
   end
 
   # GET /sites/1
   # GET /sites/1.json
   def show
+    @site = Site.find(params[:id])
   end
 
   # GET /sites/new
   def new
-    @site = Site.new
+    @site = current_user.sites.build
   end
 
   # GET /sites/1/edit
@@ -24,7 +26,7 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site = Site.new(site_params)
+    @site = current_user.sites.build(site_params)
 
     respond_to do |format|
       if @site.save
@@ -64,7 +66,7 @@ class SitesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = Site.find(params[:id])
+      @site = current_user.sites.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
