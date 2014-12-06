@@ -15,5 +15,18 @@
   <%= @site.status %>
 </p>
 
+<h4>Auditors</h4>
+<ul>
+  <% @site.auditors.each do |auditor| %> 
+    
+    <li><%= auditor %></li>
+  <% end -%>
+</ul>
+<h4>Add Auditor</h4>
+<%= form_for [@site, @site.auditor_participations.build] do |f| -%>
+  <%= f.text_area :email %>
+  <%= f.submit  %>
+<% end -%>
+
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>
