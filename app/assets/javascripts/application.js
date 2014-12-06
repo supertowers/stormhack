@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require libs/jquery-1.10.2.js
+//= require libs/bootstrap.js
+//= require plugins/timeago/jquery.timeago.js
+//= require mvpready-core.js

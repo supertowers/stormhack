@@ -1,4 +1,6 @@
 
+<% content_for :body_class, "account-bg" %>
+
 <% content_for :navigation do %>
   <li class="active">
     <a href="/">Home</a>
@@ -44,12 +46,54 @@
     <li>
       <a href="/auth/facebook">
         <i class="fa fa-facebook"></i>
-        Login
+        &nbsp;&nbsp; Login with Facebook
       </a>
     </li>
 
   <% end %>
 <% end %>
 
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+<!--
+<div class="masthead">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 masthead-text animated fadeInDownBig">
+        <h1 class="masthead-title">A</h1>
+        <p class="masthead-"> </p>
+      </div>
+      <div class="col-md-4 masthead-text animated fadeInDownBig">
+        <h1 class="masthead-title">B</h1>
+        <p class="masthead-"> </p>
+      </div>
+      <div class="col-md-4 masthead-text animated fadeInDownBig">
+        <h1 class="masthead-title">C</h1>
+        <p class="masthead-"> </p>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="content">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="account-body">
+          <h3>Sitios Web</h3>
+          <h5>&Uacute;ltimos Sitios Publicados</h5>
+        </div>
+      </div>
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-5">
+        <div class="account-body">
+          <h3>Ranking</h3>
+          <h5>Pentesters por puntuaci&oacute;n</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

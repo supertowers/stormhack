@@ -16,28 +16,6 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300,700">
 
-  <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="./css/font-awesome.min.css">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-
-  <!-- App CSS -->
-  <link href="./css/mvpready-landing-belize.css" rel="stylesheet">
-  <!--
-  <link href="./css/mvpready-admin-belize.css" rel="stylesheet">
-  <link href="./css/mvpready-landing-carrot.css" rel="stylesheet">
-  <link href="./css/mvpready-landing-pom.css   " rel="stylesheet">
-  <link href="./css/mvpready-landing-royal.css " rel="stylesheet">
-  <link href="./css/mvpready-landing-slate.css " rel="stylesheet">
-  <link href="./css/mvpready-landing-square.css" rel="stylesheet">
-  <link href="./css/mvpready-landing.css" rel="stylesheet">
-  -->
-  <link href="./css/mvpready-flat.css" rel="stylesheet">
-  <link href="./css/animate.css" rel="stylesheet">
-  <!-- <link href="./css/custom.css" rel="stylesheet">-->
-
-
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -47,10 +25,9 @@
   <link rel="shortcut icon" href="favicon.ico">
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="">
+<body class="<%= yield :body_class %>">
 
 <header class="navbar navbar-inverse" role="banner">
 
@@ -88,34 +65,7 @@
 
   </header>
 
-    <div class="masthead">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 masthead-text animated fadeInDownBig">
-            <h1 class="masthead-title">A</h1>
-            <p class="masthead-"> </p>
-          </div> <!-- /.masthead-text -->
-          <div class="col-md-4 masthead-text animated fadeInDownBig">
-            <h1 class="masthead-title">B</h1>
-            <p class="masthead-"> </p>
-          </div> <!-- /.masthead-text -->
-          <div class="col-md-4 masthead-text animated fadeInDownBig">
-            <h1 class="masthead-title">C</h1>
-            <p class="masthead-"> </p>
-          </div> <!-- /.masthead-text -->
-        </div> <!-- /.row -->
-      </div>
-    </div> <!-- /.masthead -->
-
-    <div class="content">
-
-      <div class="container">
-
-        <%= yield %>
-
-      </div>
-    </div>
+  <%= yield %>
 
 </div> <!-- /#wrapper -->
 
@@ -141,27 +91,8 @@
   </div>
 </footer>
 
-
-<!-- Bootstrap core JavaScript
-================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="./js/libs/jquery-1.10.2.min.js"></script>
-<script src="./js/libs/bootstrap.min.js"></script>
-
-<script src="./js/plugins/timeago/jquery.timeago.js"></script>
-<script src="./js/plugins/tweetable/tweetable.jquery.min.js"></script>
-
-<!--[if lt IE 9]>
-<script src="./js/libs/excanvas.compiled.js"></script>
-<![endif]-->
-
-
-<!-- Plugin JS -->
-<script src="./js/plugins/carouFredSel/jquery.carouFredSel-6.2.1-packed.js"></script>
-
-<!-- App JS -->
-<script src="./js/mvpready-core.js"></script>
-
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 </body>
 </html>
