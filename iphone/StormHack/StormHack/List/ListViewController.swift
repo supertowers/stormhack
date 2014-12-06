@@ -73,7 +73,7 @@ class ListViewController: UITableViewController, UITableViewDelegate, UITableVie
         let p: Project = dataArray![indexPath.row]
         
         var attributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(15)
+            NSFontAttributeName: UIFont(name: "FontAwesome", size: 15)
         ]
         
         var attr = NSAttributedString(string: p.desc!, attributes: attributes)

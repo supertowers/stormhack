@@ -42,16 +42,16 @@ class ListViewCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
         urlTitle = UILabel()
-        urlTitle.font = UIFont.boldSystemFontOfSize(18)
+        urlTitle.font = UIFont(name: "FontAwesome", size: 18)
         urlImage = UIImageView()
         
         urlDescription = UILabel()
         urlDescription.numberOfLines = 0
         urlDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping 
-        urlDescription.font = UIFont.systemFontOfSize(15)
+        urlDescription.font = UIFont(name: "FontAwesome", size: 15)
         
         reward = UILabel()
-        reward.font = UIFont.boldSystemFontOfSize(18)
+        reward.font = UIFont(name: "FontAwesome", size: 18)
         
         urlTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
         urlImage.setTranslatesAutoresizingMaskIntoConstraints(false)

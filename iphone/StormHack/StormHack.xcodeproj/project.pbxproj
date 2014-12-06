@@ -28,6 +28,9 @@
 		6453F9911A33399600A967D6 /* StormHackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453F9901A33399600A967D6 /* StormHackTests.swift */; };
 		6453F99B1A333BA700A967D6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453F99A1A333BA700A967D6 /* ListViewController.swift */; };
 		64BA29891A338930004F4329 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 64BA29881A338930004F4329 /* FontAwesome.otf */; };
+		64FBDD641A3393DA0066CD65 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FBDD631A3393DA0066CD65 /* CoreText.framework */; };
+		64FBDD661A339D220066CD65 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FBDD651A339D220066CD65 /* Activity.swift */; };
+		64FBDD681A339E950066CD65 /* ActivityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FBDD671A339E950066CD65 /* ActivityViewCell.swift */; };
 		727C756B99A049948E4BFBE6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC9AEC5023D4B9DAA80E7AB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +50,7 @@
 		6412EE611A334FED004947D9 /* Ranking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
 		6412EE631A335721004947D9 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = StormHack/Profile/ProfileView.swift; sourceTree = SOURCE_ROOT; };
 		6412EE661A335892004947D9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		6412EE691A336041004947D9 /* FacebookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookView.swift; sourceTree = SOURCE_ROOT; };
+		6412EE691A336041004947D9 /* FacebookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookView.swift; path = StormHack/Profile/FacebookView.swift; sourceTree = SOURCE_ROOT; };
 		6412EE6B1A336CFF004947D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6412EE6F1A3374EB004947D9 /* StoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
 		6412EE721A3382C9004947D9 /* StormAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StormAPI.swift; sourceTree = "<group>"; };
@@ -69,6 +72,9 @@
 		6453F99A1A333BA700A967D6 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = StormHack/List/ListViewController.swift; sourceTree = SOURCE_ROOT; };
 		64BA29881A338930004F4329 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		64BA298A1A3389C4004F4329 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		64FBDD631A3393DA0066CD65 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		64FBDD651A339D220066CD65 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		64FBDD671A339E950066CD65 /* ActivityViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewCell.swift; path = StormHack/Profile/ActivityViewCell.swift; sourceTree = SOURCE_ROOT; };
 		CBC9AEC5023D4B9DAA80E7AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD3376B53F04426A600C3DF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FBDD641A3393DA0066CD65 /* CoreText.framework in Frameworks */,
 				727C756B99A049948E4BFBE6 /* libPods.a in Frameworks */,
 				6412EE671A335892004947D9 /* FacebookSDK.framework in Frameworks */,
 			);
@@ -114,7 +121,7 @@
 			children = (
 				6412EE721A3382C9004947D9 /* StormAPI.swift */,
 			);
-			name = API;
+			path = API;
 			sourceTree = "<group>";
 		};
 		6412EE741A3382D8004947D9 /* Configuration */ = {
@@ -140,6 +147,7 @@
 				643250BA1A333C35002C0857 /* ProfileViewController.swift */,
 				6412EE631A335721004947D9 /* ProfileView.swift */,
 				6412EE691A336041004947D9 /* FacebookView.swift */,
+				64FBDD671A339E950066CD65 /* ActivityViewCell.swift */,
 			);
 			name = Profile;
 			path = Profil;
@@ -169,6 +177,7 @@
 				643250C71A3344C7002C0857 /* Project.swift */,
 				6412EE611A334FED004947D9 /* Ranking.swift */,
 				6412EE6B1A336CFF004947D9 /* User.swift */,
+				64FBDD651A339D220066CD65 /* Activity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +261,7 @@
 		6803928D0AC14213A881969A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64FBDD631A3393DA0066CD65 /* CoreText.framework */,
 				CBC9AEC5023D4B9DAA80E7AB /* libPods.a */,
 			);
 			name = Frameworks;
@@ -394,9 +404,11 @@
 				6453F97D1A33399500A967D6 /* ViewController.swift in Sources */,
 				6453F97B1A33399500A967D6 /* AppDelegate.swift in Sources */,
 				643250C51A3341BC002C0857 /* ConstraintsHelper.swift in Sources */,
+				64FBDD681A339E950066CD65 /* ActivityViewCell.swift in Sources */,
 				643250BB1A333C35002C0857 /* ProfileViewController.swift in Sources */,
 				6412EE641A335721004947D9 /* ProfileView.swift in Sources */,
 				6412EE761A3382F9004947D9 /* Appearance.swift in Sources */,
+				64FBDD661A339D220066CD65 /* Activity.swift in Sources */,
 				6412EE6A1A336041004947D9 /* FacebookView.swift in Sources */,
 				6412EE701A3374EB004947D9 /* StoreData.swift in Sources */,
 				6412EE6C1A336CFF004947D9 /* User.swift in Sources */,

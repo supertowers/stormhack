@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var profileView: ProfileView!
     var facebooksView: FacebookView!
     
+    var dataArray: Array<Activity>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = UIRectEdge.None
         self.checkFB()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -32,6 +36,31 @@ class ProfileViewController: UIViewController {
     
     internal func setupProfileTargets() {
         profileView.logoutButton.addTarget(self, action: "logout", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        dataArray = Array<Activity>()
+        
+        var a:Activity = Activity()
+        a.type = Type.Check
+        a.message = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla "
+        
+        dataArray?.append(a)
+        
+        a = Activity()
+        a.type = Type.Ban
+        a.message = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla "
+        
+        dataArray?.append(a)
+        
+        a = Activity()
+        a.type = Type.Eye
+        a.message = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla "
+        
+        dataArray?.append(a)
+        
+        profileView.activityTable.delegate = self
+        profileView.activityTable.dataSource = self
+        profileView.activityTable.reloadData()
+        
     }
     
     internal func checkFB() {
@@ -60,40 +89,33 @@ class ProfileViewController: UIViewController {
             
             switch(state) {
             case FBSessionState.Open:
-                println("open")
                 FBSession.setActiveSession(session)
                 self.requestUserData()
                 break
             case FBSessionState.CreatedTokenLoaded:
-                println("token")
                 FBSession.setActiveSession(session)
                 self.requestUserData()
                 break
         
             case FBSessionState.Created:
-                println("created")
                 FBSession.setActiveSession(session)
                 self.requestUserData()
                 break
                 
             case FBSessionState.OpenTokenExtended:
-                println("extended")
                 FBSession.setActiveSession(session)
                 self.requestUserData()
                 break
             
             case FBSessionState.CreatedOpening:
                 FBSession.activeSession().closeAndClearTokenInformation()
-                println("opening")
                 break
              
             case FBSessionState.ClosedLoginFailed:
                 FBSession.activeSession().closeAndClearTokenInformation()
-                println("failed")
                 break
             case FBSessionState.Closed:
                 FBSession.activeSession().closeAndClearTokenInformation()
-                println("closed")
                 break
                 
             default:
@@ -131,5 +153,54 @@ class ProfileViewController: UIViewController {
         StoreData.deleteUserData()
         setupFBView()
     }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var a:Activity = dataArray![indexPath.row]
+        
+        var cell = profileView.activityTable.dequeueReusableCellWithIdentifier("ActivityViewCell") as ActivityViewCell!
+        if cell == nil {
+            cell = ActivityViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ActivityViewCell")
+        }
+        
+        cell.setData(a)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray!.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var a: Activity = dataArray![indexPath.row]
+        
+        var attributes = [
+            NSFontAttributeName: UIFont(name: "FontAwesome", size: 15)
+        ]
+        
+        var attr = NSAttributedString(string: a.message, attributes: attributes)
+        
+        var frame: CGRect = attr.boundingRectWithSize(CGSizeMake(255, 2000), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
+        
+        return frame.height + 20
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "ACTIVIDAD"
+    }
+
     
 }

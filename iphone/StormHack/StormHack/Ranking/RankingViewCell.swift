@@ -26,9 +26,13 @@ class RankingViewCell: UITableViewCell {
     
     internal func setupViews() {
         avatar = UIImageView()
+        avatar.contentMode = UIViewContentMode.ScaleAspectFit
+        avatar.layer.cornerRadius = 25
+        avatar.layer.masksToBounds = true
         username = UILabel()
-        username.font = UIFont.boldSystemFontOfSize(18)
+        username.font = UIFont(name: "FontAwesome", size: 18)
         points = UILabel()
+        points.font = UIFont(name: "FontAwesome", size: 18)
         
         avatar.setTranslatesAutoresizingMaskIntoConstraints(false)
         username.setTranslatesAutoresizingMaskIntoConstraints(false)
