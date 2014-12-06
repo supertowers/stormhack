@@ -2726,6 +2726,9 @@ body {
   .account-wrapper .row > div {
     margin-bottom: 0;
   }
+  .account-body {
+    padding: 10px;
+  }
   .account-body .account-form {
     padding: 0 25px;
     text-align: left;
