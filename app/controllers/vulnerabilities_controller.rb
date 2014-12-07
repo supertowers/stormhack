@@ -1,6 +1,6 @@
 class VulnerabilitiesController < ApplicationController
   before_action :set_site
-  before_action :set_vulnerability, only: [:show, :edit, :update, :destroy]
+  before_action :set_vulnerability, only: [:show, :edit, :update, :destroy, :approve, :reject, :publish]
 
   # GET /sites/1/vulnerabilities
   # GET /sites/1/vulnerabilities.json
