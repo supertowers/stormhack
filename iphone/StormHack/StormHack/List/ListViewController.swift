@@ -90,14 +90,14 @@ class ListViewController: UITableViewController, UITableViewDelegate, UITableVie
         let p: Project = dataArray![indexPath.row]
         
         var attributes = [
-            NSFontAttributeName: UIFont(name: "FontAwesome", size: 15)
+            NSFontAttributeName: UIFont(name: "FontAwesome", size: 12)
         ]
         
         var attr = NSAttributedString(string: p.desc!, attributes: attributes)
         
         var frame: CGRect = attr.boundingRectWithSize(CGSizeMake(180, 2000), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
         
-        return frame.height + 60
+        return frame.height + 50
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

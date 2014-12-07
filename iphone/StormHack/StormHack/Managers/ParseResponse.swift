@@ -28,7 +28,6 @@ class ParseResponse: NSObject {
             var p:Project = Project()
             p.name = dict["url"] as String
             p.desc = dict["public_description"] as String
-            p.imageUrl = dict["snapshot"] as? String
             projects.append(p)
         }
         
@@ -43,7 +42,11 @@ class ParseResponse: NSObject {
         for dict in array {
             var a:Activity = Activity()
             a.message = dict["activity"] as String
-            a.type = Type.Web
+            if dict["type"] as String == "Participation" {
+                a.type = Type.Web
+            } else {
+                a.type = Type.Bug
+            }
             a.url = dict["url"] as String
             activities.append(a)
         }

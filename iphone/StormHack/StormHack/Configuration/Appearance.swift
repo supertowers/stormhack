@@ -21,7 +21,7 @@ class Appearance: NSObject {
     }
     
     class func getHostURL() -> String {
-        return "http://192.168.1.142:3000"
-        //return "http://www.stormhack.net"
+        //return "http://192.168.1.142:3000"
+        return "http://www.stormhack.net"
     }
 }

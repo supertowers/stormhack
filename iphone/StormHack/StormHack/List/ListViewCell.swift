@@ -40,13 +40,13 @@ class ListViewCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
         urlTitle = UILabel()
-        urlTitle.font = UIFont(name: "FontAwesome", size: 16)
+        urlTitle.font = UIFont(name: "FontAwesome", size: 15)
         urlImage = UIImageView()
         
         urlDescription = UILabel()
         urlDescription.numberOfLines = 0
         urlDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping 
-        urlDescription.font = UIFont(name: "FontAwesome", size: 15)
+        urlDescription.font = UIFont(name: "FontAwesome", size: 12)
         
         urlTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
         urlImage.setTranslatesAutoresizingMaskIntoConstraints(false)
