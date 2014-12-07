@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @vulnerabilities = Vulnerability.find(@user.id)
+
+    render json: { user: @user, vulnerabilities: @vulnerabilities }
   end
 
   # GET /users/1/edit
@@ -21,7 +24,7 @@ class UsersController < ApplicationController
     facebook_graph = Koala::Facebook::API.new(params[:access_token])
     facebook_data = facebook_graph.get_object("me")
     @user = User.from_facebook(facebook_data, params[:access_token])
-    
+
     respond_to do |format|
       if @user.persisted?
         sign_in @user
