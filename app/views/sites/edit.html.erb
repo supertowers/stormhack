@@ -13,9 +13,7 @@
             <u>1. Edita tu sitio</u>
           </h4>
           <div class="portlet-body">
-
             <%= render 'form' %>
-
           </div> <!-- /.portlet-body -->
         </div> <!-- /.portlet -->
       </div>
@@ -34,39 +32,36 @@
             <p>Para ello, copia este c&oacute;digo en la cabecera HTML de tu web, y haz click en "verificar"</p>
             <br />
 <pre>
-&lt;meta type="stormhack" content="hacking is permitted in this web" id="83fj2so481uf" /&gt;
+&lt;meta name="stormhack-validation" content="<%= @site.verification_code %>" /&gt;
 </pre>
             <br />
             <hr />
 
             <div class="site-actions">
-              <div "site-status" style="float: left;">
-                <% if false %>
-                  <big style="color: #7cb268;">
-                    &nbsp;&nbsp;
-                    <i class="fa fa-check"></i>&nbsp;
-                    <b>Sitio verificado</b>
-                  </big>
-                <% elsif false %>
-                  <big style="color: #428bca;">
-                    &nbsp;&nbsp;
-                    <i class="fa fa-spinner fa-spin"></i>&nbsp;
-                    <b>Verificando tu sitio...</b>
-                  </big>
-                <% else %>
-                  <big style="color: #d9534f;">
-                    &nbsp;&nbsp;
-                    <i class="fa fa-times"></i>&nbsp;
-                    <b>Sitio no verificado</b>
-                  </big>
-                <% end %>
+              <div id="site-status" style="float: left;">
+                <big id="verified" class='<%= "hide" if @site.created? %>' style="color: #7cb268;">
+                  &nbsp;&nbsp;
+                  <i class="fa fa-check"></i>&nbsp;
+                  <b>Sitio verificado</b>
+                </big>
+                <big id="not-verified" class='<%= "hide" unless @site.created? %>'  style="color: #d9534f;">
+                  &nbsp;&nbsp;
+                  <i class="fa fa-times"></i>&nbsp;
+                  <b>Sitio no verificado</b>
+                </big>
               </div>
-              <a href="javascript:;"class="btn btn-md btn-primary">Verificar</a>
+              <div class="<%= "hide" unless @site.created? %>">
+                <%= link_to "Verificar", verify_code_site_path(@site), class: 'btn btn-md btn-primary', remote: true %>
+              </div>
+              <div class="clearfix"></div>
             </div>
           </div>
 
         </div>
 
+        <div class="site-actions">
+          <%= link_to 'Volver al listado', sites_path, :class => 'btn btn-md btn-secondary action-header' %>
+        </div>
       </div>
     </div>
 </div>

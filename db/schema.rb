@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207021053) do
+ActiveRecord::Schema.define(version: 20141207031038) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20141207021053) do
     t.datetime "updated_at"
     t.integer  "site_id"
     t.string   "status"
+    t.string   "attachment"
   end
 
   add_index "vulnerabilities", ["site_id"], name: "index_vulnerabilities_on_site_id"

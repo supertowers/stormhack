@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :set_site, only: [:edit, :update, :destroy, :generate_validation_code, :verify_code]
+  before_action :set_site, only: [:edit, :update, :destroy, :verify_code]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /sites
@@ -28,6 +28,7 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = current_user.sites.build(site_params)
+    @site.verification_code = SecureRandom.hex
 
     respond_to do |format|
       if @site.save
@@ -45,7 +46,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
+        format.html { redirect_to edit_site_path(@site) }
         format.json { render :show, status: :ok, location: @site }
       else
         format.html { render :edit }
@@ -64,21 +65,9 @@ class SitesController < ApplicationController
     end
   end
 
-  def generate_validation_code
-    code = SecureRandom.hex
-    @site.update_attribute(:verification_code, code)
-
-    render json: { validation_code: code }
-  end
-
   def verify_code
-    validated = SiteValidator.validate(url: @site.url, code: @site.verification_code)
-
-    if validated
-      render json: { response: 'Ok' }
-    else
-      render json: { response: 'Code not found' }, status: 400
-    end
+    @validated = SiteValidator.validate(url: @site.url, code: @site.verification_code)
+    @site.verify!
   end
 
   private

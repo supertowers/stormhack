@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :auditor_participations
   has_many :tester_participations
-  has_many :sites
+  has_many :sites # as owner
+  has_many :testing_sites, through: :tester_participations, source: :site
   has_many :activities
 
   SCORE_INCREASED_PER_VULNERABILITY = 20

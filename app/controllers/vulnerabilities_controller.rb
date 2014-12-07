@@ -1,34 +1,40 @@
 class VulnerabilitiesController < ApplicationController
+  before_action :set_site
   before_action :set_vulnerability, only: [:show, :edit, :update, :destroy]
 
-  # GET /vulnerabilities
-  # GET /vulnerabilities.json
+  # GET /sites/1/vulnerabilities
+  # GET /sites/1/vulnerabilities.json
   def index
-    @vulnerabilities = Vulnerability.all
+    @vulnerabilities = @site.vulnerabilities.all
   end
 
-  # GET /vulnerabilities/1
-  # GET /vulnerabilities/1.json
+  # GET /sites/1/vulnerabilities/1
+  # GET /sites/1/vulnerabilities/1.json
   def show
   end
 
-  # GET /vulnerabilities/new
+  # GET /sites/1/vulnerabilities/new
   def new
-    @vulnerability = Vulnerability.new
+    @vulnerability = @site.vulnerabilities.build
   end
 
-  # GET /vulnerabilities/1/edit
+  # GET /sites/1/vulnerabilities/1/edit
   def edit
   end
 
   # POST /vulnerabilities
   # POST /vulnerabilities.json
   def create
-    @vulnerability = Vulnerability.new(vulnerability_params)
+    unless current_user.testing_sites.include? @site
+      raise Exception.new 'No puedes reportar una vulnerabilidad si no estás suscrito a este sitio'
+    end
+
+    @vulnerability = @site.vulnerabilities.build(vulnerability_params)
+    @vulnerability.user = current_user
 
     respond_to do |format|
       if @vulnerability.save
-        format.html { redirect_to @vulnerability, notice: 'Vulnerability was successfully created.' }
+        format.html { redirect_to @site, notice: 'Vulnerability was successfully created.' }
         format.json { render :show, status: :created, location: @vulnerability }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class VulnerabilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @vulnerability.update(vulnerability_params)
-        format.html { redirect_to @vulnerability, notice: 'Vulnerability was successfully updated.' }
+        format.html { redirect_to @site, notice: 'Vulnerability was successfully updated.' }
         format.json { render :show, status: :ok, location: @vulnerability }
       else
         format.html { render :edit }
@@ -51,17 +57,27 @@ class VulnerabilitiesController < ApplicationController
     end
   end
 
+  def approve
+    @vulnerability.approve
+    track_activity @vulnerability
+    redirect_to vulnerability.site
+  end
+
   # DELETE /vulnerabilities/1
   # DELETE /vulnerabilities/1.json
   def destroy
     @vulnerability.destroy
     respond_to do |format|
-      format.html { redirect_to vulnerabilities_url, notice: 'Vulnerability was successfully destroyed.' }
+      format.html { redirect_to @site, notice: 'Vulnerability was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_site
+      @site = Site.find(params[:site_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_vulnerability
       @vulnerability = Vulnerability.find(params[:id])
@@ -69,6 +85,6 @@ class VulnerabilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vulnerability_params
-      params.require(:vulnerability).permit(:user_id, :title, :description, :approved)
+      params.require(:vulnerability).permit(:title, :description, :attachment)
     end
 end

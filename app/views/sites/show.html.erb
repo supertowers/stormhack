@@ -1,38 +1,104 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @site.url %>
-</p>
+<%= render "layouts/header" %>
 
-  <strong>Screenshot:</strong>
-  <%= image_tag @site.screenshot %>
-</p>
+<% content_for :body_class, "stormhack-sites-index" %>
 
-<p>
-  <strong>User:</strong>
-  <%= @site.user %>
-</p>
+<div class="content">
+  <div class="container">
+    <h3 class="content-title"><u>Sitio: <%= link_to @site.url, @site, :style => 'color: #444' %></u> <a href="<%= @site.url %>" target="_blank" style="float: right;" class="btn btn-md btn-primary">Acceder al sitio</a></h3>
 
-<p>
-  <strong>Status:</strong>
-  <%= @site.status %>
-</p>
+    <div class="row">
+      <div class="col-sm-5 col-md-6">
+        <div class="portlet portlet-boxed">
+          <div style="position: relative; background-image: url(<%= @site.screenshot %>);" class="image-header">
+            <div style="position: absolute; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); height: 100px; width: 100%;">
+            </div>
+          </div>
+          <div class="portlet-body">
+            <h4 class="content-title"><u>Informaci&oacute;n p&uacute;blica: </u></h4>
+<pre>
+<%= @site.public_description %>
+</pre>
+          </div>
+          <div class="portlet-body">
+            <h4 class="content-title"><u><i class="icon-li fa fa-lock"></i>&nbsp; Informaci&oacute;n privada: </u></h4>
+<pre>
+<%= @site.private_description %>
+</pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 col-md-6">
+        <div class="portlet portlet-boxed">
+          <div class="portlet-body">
+            <h4 class="content-title">
+              <u>Vulnerabilidades reportadas:</u>
+              <%= link_to 'Reportar Vulnerabilidad', new_site_vulnerability_path(@site), :class => 'btn btn-xs btn-danger', :style => 'float: right' %>
+            </h4>
+            <% if true %>
+              <div style="text-align: center; color: #dddddd;" class="">
+                <span style="font-size: 72px" class="fa-stack">
+                  <i class="fa fa-cloud fa-stack-2x"></i>
+                  <i style="color: #ffffff;" class="fa fa-bolt fa-stack-1x"></i>
+                </span>
+                <h3>Ninguna vulnerabilidad a&uacute;n</h3>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <% if @site.user == current_user %>
+          <div class="portlet portlet-boxed">
+            <div class="portlet-body">
+              <h4 class="content-title"><u><i class="fa fa-shield text-secondary"></i>&nbsp; Auditores:</u></h4>
+              <ul>
+                <% if @site.auditors.empty? %>
+                  <div style="text-align: center; color: #dddddd;" class="">
+                    <span style="font-size: 72px" class="fa-stack">
+                      <i style="color: #f2f2f2;" class="fa fa-cloud fa-stack-2x"></i>
+                      <i class="fa fa-bolt fa-stack-1x"></i>
+                    </span>
+                    <h3>Ninguno</h3>
+                  </div>
+                <% end %>
+                <% @site.auditors.each do |auditor| %> 
+                  <table class="table keyvalue-table">
+                    <tbody>
+                      <tr>
+                        <td class="kv-key">
+                          <img src="<%= auditor.image %>" class="navbar-profile-avatar" alt="">
+                          <%= auditor.name %>
+                        </td>
+                        <td class="kv-value">
+                          <a class="btn btn-secondary btn-sm" href="mailto:<%= auditor.email %>">Send Email</a>
+                          &nbsp;
+                          <a class="btn btn-danger btn-sm" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                      </tr>
+                  </table>
+                <% end -%>
+              </ul>
 
-<% if @site.user == current_user %>
-  <h4>Auditors</h4>
-  <ul>
-    <% @site.auditors.each do |auditor| %> 
-      <li><%= auditor %></li>
-    <% end -%>
-  </ul>
+              <div class="well">
+                <h4>Nuevo Auditor</h4>
+                <%= form_for [@site, @site.auditor_participations.build] do |f| -%>
+                  <div class="form-group">
+                    <%= f.text_field :email, :placeholder => "Email del colaborador", class: 'form-control parsley-validated' %>
+                  </div>
+                  <div class="site-actions">
+                    <%= f.submit 'Añadir Auditor', class: 'btn btn-md btn-primary' %>
+                  </div>
+                <% end -%>
+              </div>
 
-  <h4>Add Auditor</h4>
-  <%= form_for [@site, @site.auditor_participations.build] do |f| -%>
-    <%= f.text_area :email %>
-    <%= f.submit  %>
-  <% end -%>
-<% end -%>
+
+            </div>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>
