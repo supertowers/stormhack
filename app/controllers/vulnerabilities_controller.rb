@@ -58,7 +58,19 @@ class VulnerabilitiesController < ApplicationController
   end
 
   def approve
-    @vulnerability.approve
+    @vulnerability.approve!
+    track_activity @vulnerability
+    redirect_to vulnerability.site
+  end
+
+  def reject
+    @vulnerability.reject!
+    track_activity @vulnerability
+    redirect_to vulnerability.site
+  end
+
+  def publish
+    @vulnerability.publish!
     track_activity @vulnerability
     redirect_to vulnerability.site
   end
