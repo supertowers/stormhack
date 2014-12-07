@@ -41,14 +41,11 @@ class User < ActiveRecord::Base
 
   def increase_score
     self.score += SCORE_INCREASED_PER_VULNERABILITY
-
     save
   end
 
   def decrease_score
     self.score -= SCORE_INCREASED_PER_VULNERABILITY
-    score = 0 if score < 0
-
     save
   end
 
