@@ -26,7 +26,7 @@
             <% end %>
             <% @my_sites.each do |site| %>
               <div class="miniportlet">
-                <div style="background-image: url(<%= site.screenshot_url(:header) %>);" class="image-header"></div>
+                <div style="background-image: url(<%= site.screenshot %>);" class="image-header"></div>
                 <table class="table">
                   <tbody>
                   <tr>
@@ -87,7 +87,7 @@
                     </div>
                   </td>
                   <td class="kv-value">
-                    <div style="float: right; width: 180px; background-image: url(<%= image_path site.screenshot_url(:header) %>);" class="image-header"></div>
+                    <div style="float: right; width: 180px; background-image: url(<%= image_path site.screenshot %>);" class="image-header"></div>
                   </td>
                 </tr>
               <% end %>

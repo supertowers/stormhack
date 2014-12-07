@@ -13,9 +13,7 @@
             <u>1. Edita tu sitio</u>
           </h4>
           <div class="portlet-body">
-
             <%= render 'form' %>
-
           </div> <!-- /.portlet-body -->
         </div> <!-- /.portlet -->
       </div>
@@ -67,6 +65,9 @@
 
         </div>
 
+        <div class="site-actions">
+          <%= link_to 'Volver al listado', sites_path, :class => 'btn btn-md btn-secondary action-header' %>
+        </div>
       </div>
     </div>
 </div>
