@@ -58,7 +58,20 @@
                   </div>
                 <% end %>
                 <% @site.auditors.each do |auditor| %> 
-                  <li><%= auditor %></li>
+                  <table class="table keyvalue-table">
+                    <tbody>
+                      <tr>
+                        <td class="kv-key">
+                          <img src="<%= auditor.image %>" class="navbar-profile-avatar" alt="">
+                          <%= auditor.name %>
+                        </td>
+                        <td class="kv-value">
+                          <a class="btn btn-secondary btn-sm" href="mailto:<%= auditor.email %>">Send Email</a>
+                          &nbsp;
+                          <a class="btn btn-danger btn-sm" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                      </tr>
+                  </table>
                 <% end -%>
               </ul>
 
