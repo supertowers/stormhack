@@ -97,6 +97,6 @@ class VulnerabilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vulnerability_params
-      params.require(:vulnerability).permit(:title, :description, :attachment)
+      params.require(:vulnerability).permit(:title, :description, :attachment, :category)
     end
 end
