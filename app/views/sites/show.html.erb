@@ -8,7 +8,9 @@
     <h3 class="content-title">
       <u>Sitio: <%= link_to @site.url, @site, :style => 'color: #444' %></u>
       <a href="<%= @site.url %>" target="_blank" style="float: right;" class="btn btn-md btn-primary">Acceder al sitio</a>
-      <%= link_to 'Suscribir', site_tester_participations_path(@site), {:method => :post, :class => 'btn btn-md btn-secondary', :style => 'float: right; margin-right: 4px;'} %>
+
+      <%= render "sites/subscribe", site: @site, size: 'btn-md', style: 'float: right; margin-right: 4px;' %>
+
     </h3>
 
     <div class="row">
@@ -37,7 +39,9 @@
           <div class="portlet-body">
             <h4 class="content-title">
               <u>Vulnerabilidades reportadas:</u>
-              <%= link_to 'Reportar Vulnerabilidad', new_site_vulnerability_path(@site), :class => 'btn btn-xs btn-danger', :style => 'float: right' %>
+              <% if @site.is_suscribed? current_user %>
+                <%= link_to 'Reportar Vulnerabilidad', new_site_vulnerability_path(@site), :class => 'btn btn-xs btn-danger', :style => 'float: right' %>
+              <% end %>
             </h4>
             <% if @site.vulnerabilities.empty? %>
               <div style="text-align: center; color: #dddddd;" class="">

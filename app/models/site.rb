@@ -25,6 +25,12 @@ class Site < ActiveRecord::Base
     end
   end
 
+  def is_suscribed?(user)
+    if (user)
+      TesterParticipation.where(user_id: user.id, site_id: self.id).length > 0
+    end
+  end
+
   def to_s
     url
   end

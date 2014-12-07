@@ -35,7 +35,7 @@
                       <%= site.public_description %>
                     </td>
                     <td class="kv-value">
-                      <a class="btn btn-xs btn-secondary">Suscribir</a>
+                      <%= render "sites/subscribe", site: site, size: 'btn-xs', style: 'float: right; margin-right: 4px;' %>
                     </td>
                   </tr>
                 </table>
@@ -49,8 +49,7 @@
       <div class="col-md-8 col-sm-7">
         <div class="portlet">
           <h4 class="portlet-title">
-            <u>Otros Sitios</u>
-
+            <u>Todos los Sitios</u>
             <%= link_to 'Crear sitio', new_site_path, :class => 'btn btn-sm btn-primary action-header' %>
           </h4>
 
@@ -79,7 +78,7 @@
                     </div>
                     <br />
                     <div>
-                      <%= link_to 'Suscribir', site_tester_participations_path(site), {:method => :post, :class => 'btn btn-xs btn-secondary'} %>
+                      <%= render "sites/subscribe", site: site, size: 'btn-xs', style: '' %>
 
                       <%= link_to 'Editar', edit_site_path(site), {:class => 'btn btn-xs btn-primary btn-padded-left'} %>
                       <%= link_to 'Borrar', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>

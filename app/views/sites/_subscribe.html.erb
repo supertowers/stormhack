@@ -1,0 +1,9 @@
+<% if site.is_suscribed? current_user %>
+  <%= link_to 'javascript:;', :class => 'btn ' + size + ' btn-default', :style => (style ? style : nil) do %>
+    <i class="fa fa-check"></i> Suscrito
+  <% end %>
+<% else %>
+  <%= link_to site_tester_participations_path(site), {:method => :post, :class => 'btn ' + size + ' btn-secondary', :style => (style ? style : nil) } do %>
+    Suscribir
+  <% end %>
+<% end %>
