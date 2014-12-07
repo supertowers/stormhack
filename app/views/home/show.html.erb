@@ -1,5 +1,5 @@
 
-<% content_for :body_class, "account-bg" %>
+<% content_for :body_class, "stormhack-sites-index account-bg" %>
 
 <%= render "layouts/header" %>
 
@@ -27,11 +27,14 @@
             <% @sites.each do |site| %>
             <tr>
               <td class="kv-key">
+                <div style="position: relative; height: 40px; background-image: url(<%= site.screenshot %>);" class="image-header">
+                  <div style="position: absolute; height: 40px; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); width: 100%;">
+                  </div>
+                </div>
                 <%= link_to site.url, site %><br />
                 <%= site.public_description %>
               </td>
               <td class="kv-value">
-                <%= link_to 'Suscribir', site_tester_participations_path(site), {:method => :post, :class => 'btn btn-xs btn-secondary'} %>
               </td>
             </tr>
             <% end %>
