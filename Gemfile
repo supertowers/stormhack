@@ -42,6 +42,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'mechanize', '~> 2.7.3'
 
+gem 'aasm'
+
 gem 'koala'
 
 group :production do
