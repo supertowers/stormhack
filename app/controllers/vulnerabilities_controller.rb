@@ -60,19 +60,19 @@ class VulnerabilitiesController < ApplicationController
   def approve
     @vulnerability.approve!
     track_activity @vulnerability
-    redirect_to vulnerability.site
+    redirect_to @vulnerability.site
   end
 
   def reject
     @vulnerability.reject!
     track_activity @vulnerability
-    redirect_to vulnerability.site
+    redirect_to @vulnerability.site
   end
 
   def publish
     @vulnerability.publish!
     track_activity @vulnerability
-    redirect_to vulnerability.site
+    redirect_to @vulnerability.site
   end
 
   # DELETE /vulnerabilities/1
