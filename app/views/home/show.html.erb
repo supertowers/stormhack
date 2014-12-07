@@ -15,45 +15,26 @@
 
           <table class="table keyvalue-table">
             <tbody>
+            <% if @sites.empty? %>
+              <div style="text-align: center; color: #dddddd;" class="">
+                <span style="font-size: 72px" class="fa-stack">
+                  <i class="fa fa-cloud fa-stack-2x"></i>
+                  <i style="color: #ffffff;" class="fa fa-bolt fa-stack-1x"></i>
+                </span>
+                <h3>A&uacute;n ninguno</h3>
+              </div>
+            <% end %>
+            <% @sites.each do |site| %>
             <tr>
               <td class="kv-key">
-                <a target="_blank" href="http://www.facebook.com">www.facebook.com</a><br />
-                ENCUENTRA SQL, XSS o CSRF
+                <%= link_to site.url, site %><br />
+                <%= site.public_description %>
               </td>
               <td class="kv-value">
                 <a class="btn btn-xs btn-secondary">Suscribir</a>
               </td>
             </tr>
-            <tr>
-              <td class="kv-key">
-                <a target="_blank" href="http://sandbox.google.com">sandbox.google.com</a><br />
-                CUALQUIER XSS
-              </td>
-              <td class="kv-value">
-                <a class="btn btn-xs btn-secondary">Suscribir</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="kv-key">
-                <a target="_blank" href="http://beta.something.com">beta.something.com</a><br />
-                EXTERNAL FILE INCLUSION
-              </td>
-              <td class="kv-value">
-                <a class="btn btn-xs btn-tertiary">
-                  Suscrito
-                  <i class="fa fa-check"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td class="kv-key">
-                <a target="_blank" href="http://pentesting.example.com">pentesting.example.com</a><br />
-                ay&uacute;dame a mejorar las politicas de seguridad de contrase&ntilde;as de este sitio
-              </td>
-              <td class="kv-value">
-                <a class="btn btn-xs btn-secondary">Suscribir</a>
-              </td>
-            </tr>
+            <% end %>
             </tbody>
           </table>
 
@@ -66,35 +47,15 @@
 
           <table class="table keyvalue-table">
             <tbody>
-            <tr>
-              <td class="kv-key">
-                <img src="http://graph.facebook.com/10205503049883811/picture" class="navbar-profile-avatar" alt="">
-                Pablo Lopez
-              </td>
-              <td class="kv-value">120</td>
-            </tr>
-            <tr>
-              <td class="kv-key">
-                <img src="http://graph.facebook.com/javier.cuevas.923/picture" class="navbar-profile-avatar" alt="">
-                Javier Cuevas
-              </td>
-              <td class="kv-value">110</td>
-            </tr>
-            <tr>
-              <td class="kv-key">
-                <img src="http://graph.facebook.com/selene.pinillosfranco/picture" class="navbar-profile-avatar" alt="">
-                Selene Pinillos
-              </td>
-              <td class="kv-value">85</td>
-            </tr>
-            <tr>
-              <td class="kv-key">
-                <img src="http://graph.facebook.com/raulmarcosl/picture" class="navbar-profile-avatar" alt="">
-                Raul Marcos
-              </td>
-              <td class="kv-value">20</td>
-            </tr>
-            </tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="kv-key">
+                  <img src="<%= user.image %>" class="navbar-profile-avatar" alt="">
+                  <%= user.name %>
+                </td>
+                <td class="kv-value"><%= user.score %></td>
+              </tr>
+            <% end %>
           </table>
         </div>
       </div>
