@@ -40,6 +40,7 @@ gem 'omniauth-facebook'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'mechanize', '~> 2.7.3'
 
 gem 'koala'
 
@@ -53,6 +54,6 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'sqlite3'
-  gem 'guard-livereload', require: false
   gem 'byebug'
+  gem 'guard-livereload', require: false
 end

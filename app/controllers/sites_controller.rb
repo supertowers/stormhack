@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :set_site, only: [:edit, :update, :destroy]
+  before_action :set_site, only: [:edit, :update, :destroy, :generate_validation_code, :verify_code]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /sites
@@ -60,6 +60,23 @@ class SitesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def generate_validation_code
+    code = SecureRandom.hex
+    @site.update_attribute(:verification_code, code)
+
+    render json: { validation_code: code }
+  end
+
+  def verify_code
+    validated = SiteValidator.validate(url: @site.url, code: @site.verification_code)
+
+    if validated
+      render json: { response: 'Ok' }
+    else
+      render json: { response: 'Code not found' }, status: 400
     end
   end
 

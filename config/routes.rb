@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :sites do
     resources :auditor_participations, only: [:create, :destroy]
     resources :tester_participations, only: [:create, :destroy]
+    member do
+      get 'generate_validation_code'
+      get 'verify_code'
+    end
   end
 
   resources :users, except: [:create] do
