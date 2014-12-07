@@ -27,7 +27,7 @@
   </div>
   <div class="form-group">
     <%= f.label :screenshot %><br>
-    <%= f.file_field :screenshot %>
+    <%= f.file_field :screenshot, class: 'form-control parsley-validated'  %>
   </div>
   <div class="site-actions">
     <%= f.submit 'Guardar', class: 'btn btn-md btn-primary' %>

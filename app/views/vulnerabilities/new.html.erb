@@ -1,5 +1,55 @@
-<h1>New vulnerability</h1>
 
-<%= render 'form' %>
+<%= render "layouts/header" %>
 
-<%= link_to 'Back', @site %>
+<% content_for :body_class, "stormhack-sites-index" %>
+
+<div class="content">
+  <div class="container">
+    <h3 class="content-title">
+      <u>Sitio: <%= link_to @site.url, @site, :style => 'color: #444' %></u>
+      <a href="<%= @site.url %>" target="_blank" style="float: right;" class="btn btn-md btn-primary">Acceder al sitio</a>
+      <%= link_to 'Suscribir', site_tester_participations_path(@site), {:method => :post, :class => 'btn btn-md btn-secondary', :style => 'float: right; margin-right: 4px;'} %>
+    </h3>
+
+    <div class="row">
+      <div class="col-sm-5 col-md-6">
+        <div class="portlet portlet-boxed">
+          <div style="position: relative; background-image: url(<%= @site.screenshot %>);" class="image-header">
+            <div style="position: absolute; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); height: 100px; width: 100%;">
+            </div>
+          </div>
+          <div class="portlet-body">
+            <h4 class="content-title"><u>Informaci&oacute;n p&uacute;blica: </u></h4>
+<pre>
+<%= @site.public_description %>
+</pre>
+          </div>
+          <div class="portlet-body">
+            <h4 class="content-title"><u><i class="icon-li fa fa-lock"></i>&nbsp; Informaci&oacute;n privada: </u></h4>
+<pre>
+<%= @site.private_description %>
+</pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 col-md-6">
+        <div class="portlet portlet-boxed">
+          <div class="portlet-body">
+            <h4 class="portlet-title">
+              <u>Reportar una nueva vulnerabilidad</u>
+            </h4>
+            <div class="portlet-body">
+
+              <%= render 'form' %>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="site-actions">
+          <%= link_to 'Volver al sitio', site_path(@site.id), :class => 'btn btn-md btn-secondary action-header' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

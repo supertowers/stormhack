@@ -12,19 +12,19 @@
   <% end %>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control parsley-validated' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'form-control parsley-validated' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :attachment %><br>
-    <%= f.file_field :attachment %>
+    <%= f.file_field :attachment, class: 'form-control parsley-validated' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="site-actions">
+    <%= f.submit 'Reportar Vulnerabilidad', class: 'btn btn-md btn-danger' %>
   </div>
 <% end %>

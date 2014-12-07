@@ -5,7 +5,11 @@
 
 <div class="content">
   <div class="container">
-    <h3 class="content-title"><u>Sitio: <%= link_to @site.url, @site, :style => 'color: #444' %></u> <a href="<%= @site.url %>" target="_blank" style="float: right;" class="btn btn-md btn-primary">Acceder al sitio</a></h3>
+    <h3 class="content-title">
+      <u>Sitio: <%= link_to @site.url, @site, :style => 'color: #444' %></u>
+      <a href="<%= @site.url %>" target="_blank" style="float: right;" class="btn btn-md btn-primary">Acceder al sitio</a>
+      <%= link_to 'Suscribir', site_tester_participations_path(@site), {:method => :post, :class => 'btn btn-md btn-secondary', :style => 'float: right; margin-right: 4px;'} %>
+    </h3>
 
     <div class="row">
       <div class="col-sm-5 col-md-6">
@@ -35,13 +39,63 @@
               <u>Vulnerabilidades reportadas:</u>
               <%= link_to 'Reportar Vulnerabilidad', new_site_vulnerability_path(@site), :class => 'btn btn-xs btn-danger', :style => 'float: right' %>
             </h4>
-            <% if true %>
+            <% if @site.vulnerabilities.empty? %>
               <div style="text-align: center; color: #dddddd;" class="">
                 <span style="font-size: 72px" class="fa-stack">
                   <i class="fa fa-cloud fa-stack-2x"></i>
                   <i style="color: #ffffff;" class="fa fa-bolt fa-stack-1x"></i>
                 </span>
                 <h3>Ninguna vulnerabilidad a&uacute;n</h3>
+              </div>
+            <% end %>
+            <% @site.vulnerabilities.each do |vulnerability| %>
+              <div class="row">
+                <div class="col-md-1">
+                  <img src="<%= vulnerability.user.image %>" class="navbar-profile-avatar" alt="">
+                </div>
+                <div class="col-md-8">
+                  <b><%= vulnerability.title %></b>
+                  <div>
+                    <%= vulnerability.description %>
+                  </div>
+                </div>
+                <div class="col-md-3">
+
+                    <a href="javascript:;" style="float: right;" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                      <i class="fa fa-bars"></i>
+                      <i class="mainnav-caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                      <li class="hover-secondary">
+                        <%= link_to approve_site_vulnerability_path(@site, vulnerability), {:method => :put } do  %>
+                          <i class="fa fa-check"></i>&nbsp; Aprobar
+                        <% end %>
+                      </li>
+                      <li class="hover-danger">
+                        <%= link_to reject_site_vulnerability_path(@site, vulnerability), {:method => :put } do  %>
+                          <i class="fa fa-times"></i>&nbsp; &nbsp;&nbsp;Rechazar
+                        <% end %>
+                      </li>
+                      <li class="hover-primary">
+                        <%= link_to publish_site_vulnerability_path(@site, vulnerability), {:method => :put } do  %>
+                          <i class="fa fa-globe"></i>&nbsp; &nbsp;&nbsp;¡Publicar!
+                        <% end %>
+                      </li>
+                    </ul>
+
+                    <div style="float: right; font-size: 20px; padding: 2px 8px;">
+                      <% case vulnerability.status 
+                           when 'created' %>
+                           <i class="fa fa-question text-default"></i>
+                        <% when 'approved' %>
+                           <i class="fa fa-check text-primary"></i>
+                        <% when 'rejected' %>
+                           <i class="fa fa-times text-danger"></i>
+                        <% when 'published' %>
+                           <i class="fa fa-check text-secondary"></i>
+                      <% end %>
+                    </div>
+                </div>
               </div>
             <% end %>
           </div>

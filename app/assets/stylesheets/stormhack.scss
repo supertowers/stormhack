@@ -9,6 +9,17 @@
   text-align: right;
 }
 
+.dropdown-menu > li.hover-primary > a:hover {
+  background-color: #428bca;
+}
+.dropdown-menu > li.hover-secondary > a:hover {
+  background-color: #7cb268;
+}
+.dropdown-menu > li.hover-danger > a:hover {
+  background-color: #d9534f;
+}
+
+
 .stormhack-sites-index {
 
   background-image: linear-gradient(to bottom, #EFEFEF 0%, #F8F8F8 100%);
