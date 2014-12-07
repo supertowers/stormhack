@@ -41,6 +41,8 @@ gem 'omniauth-facebook'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'koala'
+
 group :production do
   # Use sqlite3 as the database for Active Record
   gem 'pg'
@@ -52,4 +54,5 @@ group :development, :test do
   gem 'spring'
   gem 'sqlite3'
   gem 'guard-livereload', require: false
+  gem 'byebug'
 end

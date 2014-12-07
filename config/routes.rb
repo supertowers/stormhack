@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :tester_participations, only: [:create, :destroy]
   end
 
-  resources :users
+  resources :users, except: [:create] do
+    collection do
+      post 'facebook_access'
+    end
+  end
 
   root 'home#show'
 
