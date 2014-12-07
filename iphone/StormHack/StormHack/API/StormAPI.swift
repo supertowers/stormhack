@@ -16,7 +16,7 @@ class StormAPI: NSObject {
                         "access_token": token.accessToken
                      ]
         
-        getManager().POST("http://192.168.1.142:3000/users/facebook_access", parameters: params, success: { (operation: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
+        getManager().POST(Appearance.getHostURL() + "/users/facebook_access", parameters: params, success: { (operation: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
             
                 CookieHelper.saveCookie(operation.response)
                 success(user: ParseResponse.parseUser(result))
@@ -32,7 +32,7 @@ class StormAPI: NSObject {
         let manager: AFHTTPRequestOperationManager = getManager()
         //manager.requestSerializer.setValue(CookieHelper.getCookie(), forHTTPHeaderField: "Cookie")
         
-        manager.GET("http://192.168.1.142:3000/sites", parameters: nil, success: { (operation: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
+        manager.GET(Appearance.getHostURL() + "/sites", parameters: nil, success: { (operation: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
             
             println(result)
             success(ParseResponse.parseProjects(result))
@@ -57,7 +57,9 @@ class StormAPI: NSObject {
         let manager: AFHTTPRequestOperationManager = getManager()
         manager.requestSerializer.setValue(CookieHelper.getCookie(), forHTTPHeaderField: "Cookie")
         
-        manager.GET("", parameters: nil, success: { (operation: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
+        manager.GET(Appearance.getHostURL() + "/activities", parameters: nil, success: { (operation: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
+            
+            success(ParseResponse.parseActivities(result))
             
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 

@@ -9,9 +9,8 @@
 import UIKit
 
 enum Type {
-    case Ban
-    case Eye
-    case Check
+    case Bug
+    case Web
 }
 
 class ActivityViewCell: UITableViewCell {
@@ -58,8 +57,8 @@ class ActivityViewCell: UITableViewCell {
     
     internal func setConstraints() {
         var constraints = [
-                            "V:|-10-[icon(35)]-10-|",
-                            "V:|-10-[message]-10-|",
+                            "V:|-10-[icon(35)]",
+                            "V:|-15-[message]",
                             "H:|-10-[icon(35)]-10-[message]-10-|"
                             ]
         
@@ -73,19 +72,14 @@ class ActivityViewCell: UITableViewCell {
     
     func setData(a: Activity) {
         
-        if(a.type == Type.Eye) {
+        if(a.type == Type.Bug) {
+            var ic:FAKFontAwesome = FAKFontAwesome.bugIconWithSize(35)
+            ic.addAttribute(NSForegroundColorAttributeName, value: ColorHelper.colorWithHex(0xd9534f))
+            
+            icon.image = ic.imageWithSize(CGSizeMake(35,35))
+        } else if (a.type == Type.Web) {
             var ic:FAKFontAwesome = FAKFontAwesome.eyeIconWithSize(35)
-            ic.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor())
-            
-            icon.image = ic.imageWithSize(CGSizeMake(35,35))
-        } else if (a.type == Type.Check) {
-            var ic:FAKFontAwesome = FAKFontAwesome.checkCircleIconWithSize(35)
-            ic.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor())
-            
-            icon.image = ic.imageWithSize(CGSizeMake(35,35))
-        } else if (a.type == Type.Ban) {
-            var ic:FAKFontAwesome = FAKFontAwesome.banIconWithSize(35)
-            ic.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor())
+            ic.addAttribute(NSForegroundColorAttributeName, value: ColorHelper.colorWithHex(0x428bca))
             
             icon.image = ic.imageWithSize(CGSizeMake(35,35))
         }

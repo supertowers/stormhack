@@ -33,6 +33,22 @@ class ParseResponse: NSObject {
         }
         
         return projects
-        
     }
+    
+    class func parseActivities(response: AnyObject!) -> Array<Activity> {
+        
+        var activities = Array<Activity>()
+        
+        let array = response as Array<AnyObject>
+        for dict in array {
+            var a:Activity = Activity()
+            a.message = dict["activity"] as String
+            a.type = Type.Web
+            a.url = dict["url"] as String
+            activities.append(a)
+        }
+        
+        return activities
+    }
+    
 }

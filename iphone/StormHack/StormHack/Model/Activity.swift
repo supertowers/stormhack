@@ -11,4 +11,5 @@ import UIKit
 class Activity: NSObject {
     var message: String!
     var type: Type!
+    var url: String!
 }

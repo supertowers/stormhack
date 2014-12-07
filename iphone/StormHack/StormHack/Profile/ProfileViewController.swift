@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var facebooksView: FacebookView!
     var tv: AAPullToRefresh?
     
-    var dataArray: Array<Activity>?
+    var dataArray: Array<Reward>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,29 +38,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     internal func setupProfileTargets() {
         profileView.logoutButton.addTarget(self, action: "logout", forControlEvents: UIControlEvents.TouchUpInside)
         
-        dataArray = Array<Activity>()
         
-        var a:Activity = Activity()
-        a.type = Type.Check
-        a.message = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla "
         
-        dataArray?.append(a)
-        
-        a = Activity()
-        a.type = Type.Ban
-        a.message = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla "
-        
-        dataArray?.append(a)
-        
-        a = Activity()
-        a.type = Type.Eye
-        a.message = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla "
-        
-        dataArray?.append(a)
-        
-        profileView.activityTable.delegate = self
-        profileView.activityTable.dataSource = self
-        profileView.activityTable.reloadData()
+        profileView.rewardTable.delegate = self
+        profileView.rewardTable.dataSource = self
+        profileView.rewardTable.reloadData()
         
     }
     
@@ -75,11 +57,36 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     internal func getList() {
-        StormAPI.getActivityList({ (array:Array<Activity>) -> Void in
+        
+        dataArray = Array<Reward>()
+        
+        var r: Reward = Reward()
+        r.icon = TypeReward.KO
+        r.title = "Bug Rechazado"
+        r.desc = "Pablo López ha rechazado tu SQL Injection"
+        r.date = "hace 12 minutos"
+        r.badge = "-30"
+        
+        dataArray?.append(r)
+        
+        r = Reward()
+        r.icon = TypeReward.OK
+        r.title = "Bug Aceptado"
+        r.desc = "Has aceptado un XSS de Selene Pinillos"
+        r.date = "hace 20 minutos"
+        r.badge = "+150"
+        
+        dataArray?.append(r)
+        
+        profileView.rewardTable.reloadData()
+        
+        /*
+        StormAPI.getRewardList({ (array:Array<Reward>) -> Void in
             self.dataArray = array
-            self.profileView.activityTable.reloadData()
+            self.profileView.rewardTable.reloadData()
             self.tv?.stopIndicatorAnimation()
         })
+*/
     }
     
     internal func setViews() {
@@ -91,7 +98,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     internal func setupPullToRefresh() {
-        tv = (profileView.activityTable as UIScrollView).addPullToRefreshPosition(AAPullToRefreshPosition.Top, actionHandler: { (v: AAPullToRefresh!) -> Void in
+        tv = (profileView.rewardTable as UIScrollView).addPullToRefreshPosition(AAPullToRefreshPosition.Top, actionHandler: { (v: AAPullToRefresh!) -> Void in
             self.getList()
             v.stopIndicatorAnimation()
         });
@@ -166,14 +173,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var a:Activity = dataArray![indexPath.row]
+        var r:Reward = dataArray![indexPath.row]
         
-        var cell = profileView.activityTable.dequeueReusableCellWithIdentifier("ActivityViewCell") as ActivityViewCell!
+        var cell = profileView.rewardTable.dequeueReusableCellWithIdentifier("RewardViewCell") as RewardViewCell!
         if cell == nil {
-            cell = ActivityViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ActivityViewCell")
+            cell = RewardViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "RewardViewCell")
         }
         
-        cell.setData(a)
+        cell.setData(r)
         
         return cell
     }
@@ -191,17 +198,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var a: Activity = dataArray![indexPath.row]
+        var r: Reward = dataArray![indexPath.row]
         
         var attributes = [
             NSFontAttributeName: UIFont(name: "FontAwesome", size: 15)
         ]
         
-        var attr = NSAttributedString(string: a.message, attributes: attributes)
+        var attr = NSAttributedString(string: r.desc, attributes: attributes)
         
         var frame: CGRect = attr.boundingRectWithSize(CGSizeMake(255, 2000), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
         
-        return frame.height + 20
+        return frame.height + 65
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -209,7 +216,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "ACTIVIDAD"
+        return "RECOMPENSAS"
     }
 
     

@@ -48,10 +48,31 @@ class RankingViewController: UITableViewController, UITableViewDelegate, UITable
         
         dataArray = Array<Ranking>()
         
-        let r = Ranking()
-        r.username = "Username"
-        r.avatarURL = "http://images.nigms.nih.gov/images/dulles_th.jpg"
-        r.points = 50
+        var r:Ranking = Ranking()
+        r.username = "Pablo López Torres"
+        r.avatarURL = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/v/t1.0-1/c32.164.513.513/s160x160/575166_3823790881458_742720943_n.jpg?oh=22427aea79cada014559f717d7720fff&oe=54F96B35&__gda__=1426098535_568b8fb7df0bbfa4ab04da9dfc692f0e"
+        r.points = 150
+        
+        dataArray?.append(r)
+        
+        r = Ranking()
+        r.username = "Raúl Marcos Lorenzo"
+        r.avatarURL = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p160x160/10698502_10152745772198615_4252626519184685445_n.jpg?oh=7b35c4d8ee127b1fee1598c9e3c02887&oe=54FAD7FC&__gda__=1425981037_b28527ddd9a8d49108e36e8b13076339"
+        r.points = 130
+        
+        dataArray?.append(r)
+        
+        r = Ranking()
+        r.username = "Selene Pinillos Franco"
+        r.avatarURL = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/v/t1.0-1/c70.35.440.440/s160x160/9063_10152262201457788_561751306_n.jpg?oh=5018a530e89fccb636573982a35240fc&oe=551001CB&__gda__=1427309534_b1eee55a4dcc99ba34e174360d9c27f3"
+        r.points = 120
+        
+        dataArray?.append(r)
+        
+        r = Ranking()
+        r.username = "Javier Cuevas"
+        r.avatarURL = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c47.0.160.160/p160x160/10354686_10150004552801856_220367501106153455_n.jpg?oh=6f0e7cae0cd6714f07389e9bab10f4a9&oe=55186249&__gda__=1426275897_0c653a473d7b2ad2ea2324d2f3c3ef73"
+        r.points = 100
         
         dataArray?.append(r)
         

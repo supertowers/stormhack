@@ -19,4 +19,9 @@ class Appearance: NSObject {
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "FontAwesome", size: 10)], forState: UIControlState.Normal)
         
     }
+    
+    class func getHostURL() -> String {
+        return "http://192.168.1.142:3000"
+        //return "http://www.stormhack.net"
+    }
 }
