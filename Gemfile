@@ -45,7 +45,6 @@ gem 'mechanize', '~> 2.7.3'
 gem 'koala'
 
 group :production do
-  # Use sqlite3 as the database for Active Record
   gem 'pg'
   gem 'rails_12factor'
 end
