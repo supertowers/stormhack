@@ -10,18 +10,28 @@ import UIKit
 
 class CookieHelper: NSObject {
     class func saveCookie(response: NSHTTPURLResponse) {
-        var cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields, forURL: NSURL(string: ""))
+        var cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields, forURL: NSURL(string: "http://192.168.1.142:3000"))
         var cookieHeaders: [NSObject : AnyObject] = NSHTTPCookie.requestHeaderFieldsWithCookies(cookies)
     
         for key in cookieHeaders.keys {
-            println(key)
+            NSUserDefaults.standardUserDefaults().setObject(cookieHeaders[key], forKey: "Cookie")
+            println(cookieHeaders[key])
         }
-        
-       // NSUserDefaults.standardUserDefaults().setObject(cookieHeaders[cookieHeaders.keys[0]], forKey: "Cookie")
 
     }
     
-    class func getCookie() -> NSHTTPCookie {
-        return NSUserDefaults.standardUserDefaults().objectForKey("Cookie") as NSHTTPCookie
+    class func getCookie() -> String {
+        
+        var cookie = NSUserDefaults.standardUserDefaults().stringForKey("Cookie")
+        if cookie != nil {
+            return cookie!
+        }
+        
+        return ""
+        
+    }
+    
+    class func deleteCookie() {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("Cookie")
     }
 }

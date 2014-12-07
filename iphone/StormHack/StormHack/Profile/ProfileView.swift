@@ -67,7 +67,9 @@ class ProfileView: UIView {
     }
     
     func setData(user: User) {
-        picture.sd_setImageWithURL(NSURL(string: user.avatarURL!))
+        if user.avatarURL != nil {
+            picture.sd_setImageWithURL(NSURL(string: user.avatarURL!))
+        }
         username.text = user.username
     }
 

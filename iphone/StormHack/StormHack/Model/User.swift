@@ -9,8 +9,9 @@
 import UIKit
 
 class User: NSObject {
-    var id:String!
+    var id:Int!
     var avatarURL: String?
     var username: String!
     var email: String!
+    var score: Int!
 }

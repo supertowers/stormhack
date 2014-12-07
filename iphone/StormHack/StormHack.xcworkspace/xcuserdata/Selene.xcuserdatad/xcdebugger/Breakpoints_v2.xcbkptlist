@@ -57,13 +57,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StormHack/Profile/ProfileViewController.swift"
-            timestampString = "439602936.630402"
+            filePath = "StormHack/Helpers/CookieHelper.swift"
+            timestampString = "439610432.521041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "setUser(_:)"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "saveCookie(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StormHack/Profile/ProfileViewController.swift"
+            timestampString = "439611704.506199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "setupProfileView()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StormHack/API/StormAPI.swift"
-            timestampString = "439604395.420229"
+            timestampString = "439605264.513809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "loginWithToken(_:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "loginWithToken(_:success:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +105,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StormHack/Helpers/CookieHelper.swift"
-            timestampString = "439601983.828485"
+            filePath = "StormHack/API/StormAPI.swift"
+            timestampString = "439605265.042425"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "saveCookie(_:)"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "loginWithToken(_:success:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StormHack/API/StormAPI.swift"
+            timestampString = "439610692.654539"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "loginWithToken(_:success:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
