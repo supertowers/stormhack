@@ -1,5 +1,28 @@
-<h1>New site</h1>
 
-<%= render 'form' %>
+<% content_for :body_class, "stormhack-sites-index" %>
 
-<%= link_to 'Back', sites_path %>
+<div class="content">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-4 col-sm-5">
+        <div class="portlet">
+          <h4 class="portlet-title">
+            <u>1. Crea un nuevo sitio</u>
+          </h4>
+          <div class="portlet-body">
+
+            <%= render 'form' %>
+
+          </div> <!-- /.portlet-body -->
+        </div> <!-- /.portlet -->
+      </div>
+
+      <div class="col-md-8 col-sm-7">
+      </div>
+
+    </div>
+</div>
+

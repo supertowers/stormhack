@@ -1,6 +1,73 @@
-<h1>Editing site</h1>
 
-<%= render 'form' %>
+<% content_for :body_class, "stormhack-sites-index" %>
 
-<%= link_to 'Show', @site %> |
-<%= link_to 'Back', sites_path %>
+<div class="content">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-4 col-sm-5">
+        <div class="portlet">
+          <h4 class="portlet-title">
+            <u>1. Edita tu sitio</u>
+          </h4>
+          <div class="portlet-body">
+
+            <%= render 'form' %>
+
+          </div> <!-- /.portlet-body -->
+        </div> <!-- /.portlet -->
+      </div>
+
+
+      <div class="col-md-8 col-sm-7">
+        <div class="portlet">
+          <h4 class="portlet-title">
+            <u>2. Verifica tu Sitio</u>
+          </h4>
+
+
+          <div class="miniportlet">
+            <br />
+            <p>Necesitamos comprobar que tienes el control de este sitio.</p>
+            <p>Para ello, copia este c&oacute;digo en la cabecera HTML de tu web, y haz click en "verificar"</p>
+            <br />
+<pre>
+&lt;meta type="stormhack" content="hacking is permitted in this web" id="83fj2so481uf" /&gt;
+</pre>
+            <br />
+            <hr />
+
+            <div class="site-actions">
+              <div "site-status" style="float: left;">
+                <% if false %>
+                  <big style="color: #7cb268;">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-check"></i>&nbsp;
+                    <b>Sitio verificado</b>
+                  </big>
+                <% elsif false %>
+                  <big style="color: #428bca;">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-spinner fa-spin"></i>&nbsp;
+                    <b>Verificando tu sitio...</b>
+                  </big>
+                <% else %>
+                  <big style="color: #d9534f;">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-times"></i>&nbsp;
+                    <b>Sitio no verificado</b>
+                  </big>
+                <% end %>
+              </div>
+              <a href="javascript:;"class="btn btn-md btn-primary">Verificar</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+</div>
+

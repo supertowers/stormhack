@@ -30,7 +30,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to @site, notice: 'Site was successfully created.' }
+        format.html { redirect_to edit_site_path(@site) }
         format.json { render :show, status: :created, location: @site }
       else
         format.html { render :new }
