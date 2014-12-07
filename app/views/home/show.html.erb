@@ -31,7 +31,7 @@
                 <%= site.public_description %>
               </td>
               <td class="kv-value">
-                <a class="btn btn-xs btn-secondary">Suscribir</a>
+                <%= link_to 'Suscribir', site_tester_participations_path(site), {:method => :post, :class => 'btn btn-xs btn-secondary'} %>
               </td>
             </tr>
             <% end %>

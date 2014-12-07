@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :vulnerabilities
   resources :sites do
     resources :auditor_participations, only: [:create, :destroy]
     resources :tester_participations, only: [:create, :destroy]
+    resources :vulnerabilities do
+      member do
+        put 'approve'
+        put 'reject'
+        put 'publish'
+      end
+    end
     member do
       get 'generate_validation_code'
       get 'verify_code'
