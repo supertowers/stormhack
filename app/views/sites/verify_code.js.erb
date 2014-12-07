@@ -1,0 +1,9 @@
+<% if @validated %>
+  $('#verified').show()
+  $('#verifying').hide()
+  $('#not-verified').hide()
+<% else %>
+  $('#verified').hide()
+  $('#verifying').hide()
+  $('#not-verified').show()
+<% end %>

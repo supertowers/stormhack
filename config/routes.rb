@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       end
     end
     member do
-      get 'generate_validation_code'
       get 'verify_code'
     end
   end
