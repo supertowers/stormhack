@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :auditor_participations
   has_many :tester_participations
   has_many :sites
+  has_many :activities
 
   SCORE_INCREASED_PER_VULNERABILITY = 20
   SCORE_DECREASED_PER_VULNERABILITY = 5

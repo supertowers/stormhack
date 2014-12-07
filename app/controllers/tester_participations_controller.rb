@@ -9,7 +9,9 @@ class TesterParticipationsController < ApplicationController
 
     respond_to do |format|
       if @tester_participation.save
-        format.html { redirect_to @site, notice: 'TesterParticipation was successfully created.' }
+        track_activity @tester_participation
+
+        format.html { redirect_to sites_path, notice: 'Te has suscrito correctamnete' }
         format.json { render :show, status: :created, location: @tester_participation }
       else
         format.html { redirect_to @site }

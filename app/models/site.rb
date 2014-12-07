@@ -8,6 +8,10 @@ class Site < ActiveRecord::Base
 
   before_validation :smart_add_url_protocol
 
+  def to_s
+    url
+  end
+
   private
     def smart_add_url_protocol
       unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]

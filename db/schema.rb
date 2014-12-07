@@ -13,6 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20141207021053) do
 
+  create_table "activities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+
   create_table "participations", force: true do |t|
     t.string   "type"
     t.integer  "user_id"

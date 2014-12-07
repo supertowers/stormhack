@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :activities, only: [:index]
+
   resources :users, except: [:create] do
     collection do
       post 'facebook_access'

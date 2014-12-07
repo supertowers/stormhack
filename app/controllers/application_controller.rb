@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :json_request?
 
   protected
-   def json_request?
-     request.format.json?
-   end
+    def json_request?
+      request.format.json?
+    end
+
+  private
+    def track_activity(trackable, action = params[:action])
+      current_user.activities.create! action: action, trackable: trackable
+    end
 end

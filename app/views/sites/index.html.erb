@@ -79,7 +79,7 @@
                     </div>
                     <br />
                     <div>
-                      <a class="btn btn-xs btn-secondary">Suscribir</a>
+                      <%= link_to 'Suscribir', site_tester_participations_path(site), {:method => :post, :class => 'btn btn-xs btn-secondary'} %>
 
                       <%= link_to 'Editar', edit_site_path(site), {:class => 'btn btn-xs btn-primary btn-padded-left'} %>
                       <%= link_to 'Borrar', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
