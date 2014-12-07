@@ -25,6 +25,9 @@ class RankingViewCell: UITableViewCell {
     }
     
     internal func setupViews() {
+        
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+        
         avatar = UIImageView()
         avatar.contentMode = UIViewContentMode.ScaleAspectFit
         avatar.layer.cornerRadius = 25

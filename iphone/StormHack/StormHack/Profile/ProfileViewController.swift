@@ -22,8 +22,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,6 +67,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         var session:FBSession = FBSession.activeSession()
         if session.accessTokenData != nil {
             setupProfileView()
+            StormAPI.getActivityList({ (array:Array<Activity>) -> Void in
+                self.dataArray = array
+                self.profileView.activityTable.reloadData()
+            })
         } else {
             setupFBView()
         }
@@ -89,6 +93,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             switch(state) {
             case FBSessionState.Open:
+                println(session.accessTokenData)
                 FBSession.setActiveSession(session)
                 self.requestUserData()
                 break
@@ -130,6 +135,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         FBRequestConnection.startWithGraphPath("/me", parameters: ["fields": "id, name, picture, email"], HTTPMethod: "GET", completionHandler: { (connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
             
+            println(result)
             
             var user = result as FBGraphObject
             self .setUser(user)
@@ -144,6 +150,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         user.avatarURL = "https://graph.facebook.com/" + (fbUser["id"] as String) + "/picture?type=square"
         user.email = fbUser["email"] as String
         StoreData.saveUserData(user)
+        StormAPI.loginWithToken(FBSession.activeSession().accessTokenData)
         self.setupProfileView()
     }
     
@@ -177,7 +184,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray!.count
+        if dataArray != nil {
+            return dataArray!.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

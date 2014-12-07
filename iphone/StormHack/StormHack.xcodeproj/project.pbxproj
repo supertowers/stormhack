@@ -27,6 +27,7 @@
 		6453F9821A33399500A967D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6453F9811A33399500A967D6 /* Images.xcassets */; };
 		6453F9911A33399600A967D6 /* StormHackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453F9901A33399600A967D6 /* StormHackTests.swift */; };
 		6453F99B1A333BA700A967D6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453F99A1A333BA700A967D6 /* ListViewController.swift */; };
+		649B17781A33C1F9005547A9 /* CookieHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649B17771A33C1F9005547A9 /* CookieHelper.swift */; };
 		64BA29891A338930004F4329 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 64BA29881A338930004F4329 /* FontAwesome.otf */; };
 		64FBDD641A3393DA0066CD65 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FBDD631A3393DA0066CD65 /* CoreText.framework */; };
 		64FBDD661A339D220066CD65 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FBDD651A339D220066CD65 /* Activity.swift */; };
@@ -70,6 +71,7 @@
 		6453F98F1A33399600A967D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6453F9901A33399600A967D6 /* StormHackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormHackTests.swift; sourceTree = "<group>"; };
 		6453F99A1A333BA700A967D6 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = StormHack/List/ListViewController.swift; sourceTree = SOURCE_ROOT; };
+		649B17771A33C1F9005547A9 /* CookieHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieHelper.swift; sourceTree = "<group>"; };
 		64BA29881A338930004F4329 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		64BA298A1A3389C4004F4329 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		64FBDD631A3393DA0066CD65 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -167,6 +169,7 @@
 			children = (
 				643250C21A3341BC002C0857 /* ColorHelper.swift */,
 				643250C31A3341BC002C0857 /* ConstraintsHelper.swift */,
+				649B17771A33C1F9005547A9 /* CookieHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				6453F97D1A33399500A967D6 /* ViewController.swift in Sources */,
 				6453F97B1A33399500A967D6 /* AppDelegate.swift in Sources */,
 				643250C51A3341BC002C0857 /* ConstraintsHelper.swift in Sources */,
+				649B17781A33C1F9005547A9 /* CookieHelper.swift in Sources */,
 				64FBDD681A339E950066CD65 /* ActivityViewCell.swift in Sources */,
 				643250BB1A333C35002C0857 /* ProfileViewController.swift in Sources */,
 				6412EE641A335721004947D9 /* ProfileView.swift in Sources */,

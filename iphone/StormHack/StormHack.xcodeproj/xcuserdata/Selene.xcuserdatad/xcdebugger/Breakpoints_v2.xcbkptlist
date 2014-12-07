@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StormHack/List/ListViewController.swift"
-            timestampString = "439567318.85634"
+            timestampString = "439602936.630402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "setup()"
             landmarkType = "5">
          </BreakpointContent>

@@ -38,6 +38,9 @@ class ActivityViewCell: UITableViewCell {
     }
     
     internal func setupViews() {
+        
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+        
         icon = UIImageView()
         icon.contentMode = UIViewContentMode.ScaleAspectFit
         

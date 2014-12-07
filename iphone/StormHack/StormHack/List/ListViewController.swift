@@ -19,8 +19,11 @@ class ListViewController: UITableViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //GET SERVER DATA
-        //self.tableView.reloadData()
+        
+        StormAPI.getProjectList({ (array:Array<Project>) -> Void in
+            self.dataArray = array
+            self.tableView.reloadData()
+            })
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,6 +87,10 @@ class ListViewController: UITableViewController, UITableViewDelegate, UITableVie
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray!.count
+        if dataArray != nil {
+            return dataArray!.count
+        } else {
+            return 0
+        }
     }
 }

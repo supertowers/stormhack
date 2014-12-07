@@ -19,6 +19,10 @@ class RankingViewController: UITableViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        StormAPI.getRankingList({ (array:Array<Ranking>) -> Void in
+            self.dataArray = array
+            self.tableView.reloadData()
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,7 +72,11 @@ class RankingViewController: UITableViewController, UITableViewDelegate, UITable
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray!.count
+        if dataArray != nil {
+            return dataArray!.count
+        } else {
+            return 0
+        }
     }
     
 }
