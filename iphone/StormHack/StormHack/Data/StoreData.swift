@@ -21,7 +21,7 @@ class StoreData: NSObject {
     class func getUserData() -> User {
         var user: User = User()
         var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        user.id = defaults.stringForKey("id")
+        user.id = defaults.integerForKey("id")
         user.username = defaults.stringForKey("username")
         user.avatarURL = defaults.stringForKey("avatarURL")
         user.email = defaults.stringForKey("email")

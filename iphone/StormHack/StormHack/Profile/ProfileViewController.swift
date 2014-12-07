@@ -12,14 +12,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var profileView: ProfileView!
     var facebooksView: FacebookView!
+    var tv: AAPullToRefresh?
     
     var dataArray: Array<Activity>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = UIRectEdge.None
+        self.setViews()
         self.checkFB()
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,25 +68,41 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         var session:FBSession = FBSession.activeSession()
         if session.accessTokenData != nil {
             setupProfileView()
-            StormAPI.getActivityList({ (array:Array<Activity>) -> Void in
-                self.dataArray = array
-                self.profileView.activityTable.reloadData()
-            })
+            self.getList()
         } else {
             setupFBView()
         }
     }
     
-    internal func setupFBView() {
+    internal func getList() {
+        StormAPI.getActivityList({ (array:Array<Activity>) -> Void in
+            self.dataArray = array
+            self.profileView.activityTable.reloadData()
+            self.tv?.stopIndicatorAnimation()
+        })
+    }
+    
+    internal func setViews() {
         facebooksView = FacebookView(frame: self.view.bounds)
-        self.view = facebooksView
+        profileView = ProfileView(frame: self.view.bounds)
         setupFBTargets()
+        setupProfileTargets()
+        setupPullToRefresh()
+    }
+    
+    internal func setupPullToRefresh() {
+        tv = (profileView.activityTable as UIScrollView).addPullToRefreshPosition(AAPullToRefreshPosition.Top, actionHandler: { (v: AAPullToRefresh!) -> Void in
+            self.getList()
+            v.stopIndicatorAnimation()
+        });
+    }
+    
+    internal func setupFBView() {
+        self.view = facebooksView
     }
     internal func setupProfileView() {
-        profileView = ProfileView(frame: self.view.bounds)
         self.view = profileView
         profileView.setData(StoreData.getUserData())
-        setupProfileTargets()
     }
     
     internal func loginWithFacebook() {
@@ -93,7 +110,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             switch(state) {
             case FBSessionState.Open:
-                println(session.accessTokenData)
                 FBSession.setActiveSession(session)
                 self.requestUserData()
                 break
@@ -126,32 +142,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             default:
                 break
             }
-            
-            //access token, picture, name, id, expire
         }
     }
     
     internal func requestUserData() {
-        
-        FBRequestConnection.startWithGraphPath("/me", parameters: ["fields": "id, name, picture, email"], HTTPMethod: "GET", completionHandler: { (connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-            
-            println(result)
-            
-            var user = result as FBGraphObject
-            self .setUser(user)
+        StormAPI.loginWithToken(FBSession.activeSession().accessTokenData, success: { (user) -> Void in
+            StoreData.saveUserData(user)
+            self.setupProfileView()
         })
-    }
-    
-    internal func setUser(fbUser: FBGraphObject) {
-        var user:User = User()
         
-        user.id = fbUser["id"] as String
-        user.username = fbUser["name"] as String
-        user.avatarURL = "https://graph.facebook.com/" + (fbUser["id"] as String) + "/picture?type=square"
-        user.email = fbUser["email"] as String
-        StoreData.saveUserData(user)
-        StormAPI.loginWithToken(FBSession.activeSession().accessTokenData)
-        self.setupProfileView()
     }
     
     internal func logout() {

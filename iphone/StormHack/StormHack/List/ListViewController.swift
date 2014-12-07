@@ -11,19 +11,34 @@ import UIKit
 class ListViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
 
     var dataArray: Array<Project>?
+    var tv: AAPullToRefresh?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = UIRectEdge.None
         self.setup()
+        self.setupPullToRefresh()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        StormAPI.getProjectList({ (array:Array<Project>) -> Void in
-            self.dataArray = array
-            self.tableView.reloadData()
-            })
+        self.getList()
+    }
+    
+    internal func getList() {
+        StormAPI.getProjectList({ (array:Array<Project>?) -> Void in
+            if array != nil {
+                self.dataArray = array
+                self.tableView.reloadData()
+                self.tv?.stopIndicatorAnimation()
+            }
+        })
+    }
+    
+    internal func setupPullToRefresh() {
+        tv = (self.tableView as UIScrollView).addPullToRefreshPosition(AAPullToRefreshPosition.Top, actionHandler: { (v: AAPullToRefresh!) -> Void in
+            self.getList()
+        });
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,7 +48,7 @@ class ListViewController: UITableViewController, UITableViewDelegate, UITableVie
     internal func setup() {
         
         dataArray = Array<Project>()
-        
+        /*
         let p = Project()
         p.name = "title"
         p.desc = "description d d d asoidj aoid aoi doisa dasid oias doiasudoiadu oai udoiadoisaud ois"
@@ -41,10 +56,9 @@ class ListViewController: UITableViewController, UITableViewDelegate, UITableVie
         p.reward = "5"
         
         dataArray?.append(p)
-        
+        */
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -13,8 +13,6 @@ class ListViewCell: UITableViewCell {
     var urlTitle: UILabel!
     var urlImage: UIImageView!
     var urlDescription: UILabel!
-    var reward: UILabel!
-    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,7 +40,7 @@ class ListViewCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
         urlTitle = UILabel()
-        urlTitle.font = UIFont(name: "FontAwesome", size: 18)
+        urlTitle.font = UIFont(name: "FontAwesome", size: 16)
         urlImage = UIImageView()
         
         urlDescription = UILabel()
@@ -50,18 +48,13 @@ class ListViewCell: UITableViewCell {
         urlDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping 
         urlDescription.font = UIFont(name: "FontAwesome", size: 15)
         
-        reward = UILabel()
-        reward.font = UIFont(name: "FontAwesome", size: 18)
-        
         urlTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
         urlImage.setTranslatesAutoresizingMaskIntoConstraints(false)
         urlDescription.setTranslatesAutoresizingMaskIntoConstraints(false)
-        reward.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         contentView.addSubview(urlTitle)
         contentView.addSubview(urlImage)
         contentView.addSubview(urlDescription)
-        contentView.addSubview(reward)
         
     }
     
@@ -69,15 +62,13 @@ class ListViewCell: UITableViewCell {
         var constraints = [
                             "V:|-10-[urlImage(50)]",
                             "V:|-10-[urlTitle]-5-[urlDescription]",
-                            "V:|-10-[reward(50)]",
-                            "H:|-10-[urlImage(50)]-10-[urlTitle]-10-[reward(50)]-10-|",
-                            "H:[urlImage]-10-[urlDescription]-10-[reward]"
+                            "H:|-10-[urlImage(50)]-10-[urlTitle]-10-|",
+                            "H:[urlImage]-10-[urlDescription]-10-|"
                             ]
         var views = Dictionary<String, UIView>()
         views["urlImage"] = urlImage
         views["urlTitle"] = urlTitle
         views["urlDescription"] = urlDescription
-        views["reward"] = reward
         
         ConstraintsHelper.setConstraints(constraints: constraints, views: views, inView: self.contentView)
         
@@ -86,8 +77,11 @@ class ListViewCell: UITableViewCell {
     func setData(p: Project) {
         urlTitle.text = p.name
         urlDescription.text = p.desc
-        urlImage.sd_setImageWithURL(NSURL(string: p.imageUrl!))
-        reward.text = p.reward! + "€"
+        if p.imageUrl != nil {
+            urlImage.sd_setImageWithURL(NSURL(string: p.imageUrl!))
+        } else {
+            urlImage.image = UIImage(named: "photo.png")
+        }
     }
 
 }

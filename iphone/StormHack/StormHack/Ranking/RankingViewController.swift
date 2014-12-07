@@ -11,22 +11,37 @@ import UIKit
 class RankingViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
     var dataArray: Array<Ranking>?
+    var tv: AAPullToRefresh?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = UIRectEdge.None
         self.setup()
+        self.setupPullToRefresh()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        StormAPI.getRankingList({ (array:Array<Ranking>) -> Void in
-            self.dataArray = array
-            self.tableView.reloadData()
-        })
+        self.getList()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    internal func getList() {
+        StormAPI.getRankingList({ (array:Array<Ranking>) -> Void in
+            self.dataArray = array
+            self.tableView.reloadData()
+            self.tv?.stopIndicatorAnimation()
+        })
+    }
+    
+    internal func setupPullToRefresh() {
+        tv = (self.tableView as UIScrollView).addPullToRefreshPosition(AAPullToRefreshPosition.Top, actionHandler: { (v: AAPullToRefresh!) -> Void in
+            self.getList()
+            v.stopIndicatorAnimation()
+        });
     }
     
     internal func setup() {

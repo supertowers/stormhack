@@ -11,6 +11,6 @@ import UIKit
 class Project: NSObject {
     var name: String!
     var desc: String!
-    var imageUrl: String!
+    var imageUrl: String?
     var reward: String!
 }
