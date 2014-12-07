@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @vulnerabilities = Vulnerability.find(@user.id)
+    @vulnerabilities = Vulnerability.where(user_id: @user.id)
 
     render json: { user: @user, vulnerabilities: @vulnerabilities }
   end
